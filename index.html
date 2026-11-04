@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제이엘스튜디오 | JL Company - 프리미엄 인테리어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+<style>
+  :root{
+    --bg: #EEEAE1;
+    --bg-card: #F7F4EE;
+    --ink: #262420;
+    --ink-soft: #55524A;
+    --deep: #1E231F;
+    --deep-2: #262C26;
+    --olive: #6B7355;
+    --olive-dark: #4E5540;
+    --brass: #A67C42;
+    --line: #CFC7B4;
+    --line-soft: #DDD6C6;
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Pretendard Variable','Pretendard',-apple-system,sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.28em;
+    color:var(--olive-dark);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--brass);}
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(238,234,225,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1180px; margin:0 auto; padding:18px 32px;
+  }
+  .logo{font-family:'Pretendard Variable','Pretendard',-apple-system,sans-serif; font-weight:700; font-size:19px; letter-spacing:0.02em; color:var(--brass);}
+  .logo span{color:var(--brass); letter-spacing:-0.03em;}
+  .nav-links{display:flex; gap:36px; font-size:14px; font-weight:500;}
+  .nav-links a{position:relative; padding:4px 0; color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a::after{
+    content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px;
+    background:var(--brass); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    font-size:13px; font-weight:600; padding:10px 20px;
+    border:1px solid var(--ink); border-radius:var(--radius);
+    transition:all .25s ease;
+  }
+  .nav-cta:hover{background:var(--ink); color:var(--bg);}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer;}
+  .burger span{width:22px; height:1.5px; background:var(--ink);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding:120px 32px 60px; overflow:hidden;
+  }
+  .hero-grid{
+    max-width:1180px; margin:0 auto; width:100%;
+    display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(34px,4.6vw,58px);
+    line-height:1.28;
+    margin-bottom:26px;
+  }
+  .hero h1 em{font-style:normal; color:var(--olive-dark); border-bottom:1px solid var(--brass);}
+  .hero p{
+    font-size:16px; color:var(--ink-soft); max-width:440px; margin-bottom:36px;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--deep); color:#F2EFE7; font-size:14px; font-weight:600;
+    padding:15px 28px; border-radius:var(--radius); transition:background .25s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{background:var(--olive-dark);}
+  .btn-ghost{
+    border:1px solid var(--ink); font-size:14px; font-weight:600;
+    padding:15px 28px; border-radius:var(--radius); transition:all .25s ease;
+    display:inline-block;
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--bg);}
+
+  .blueprint-wrap{position:relative; aspect-ratio:4/3; width:100%;}
+  .blueprint-wrap svg{width:100%; height:100%;}
+  .blueprint-wrap .bp-bg{fill:var(--deep);}
+  .bp-line{
+    fill:none; stroke:#C9D6C3; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
+    pathLength:1; stroke-dasharray:1; stroke-dashoffset:1;
+    animation:draw 1.8s ease forwards;
+  }
+  .bp-line.thin{stroke:#8FA089; stroke-width:1;}
+  .bp-dot{fill:var(--brass); opacity:0; animation:fadein .6s ease forwards; animation-delay:1.9s;}
+  .bp-label{
+    font-family:'Pretendard Variable',sans-serif; font-size:13px; fill:#DCD6C4;
+    opacity:0; animation:fadein .6s ease forwards; animation-delay:1.9s; letter-spacing:0.05em;
+  }
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
+  .bp-line:nth-child(1){animation-delay:0s;}
+  .bp-line:nth-child(2){animation-delay:.15s;}
+  .bp-line:nth-child(3){animation-delay:.3s;}
+  .bp-line:nth-child(4){animation-delay:.45s;}
+  .bp-line:nth-child(5){animation-delay:.6s;}
+  .bp-line:nth-child(6){animation-delay:.75s;}
+  .bp-line:nth-child(7){animation-delay:.9s;}
+  .bp-line:nth-child(8){animation-delay:1.05s;}
+  .bp-caption{
+    margin-top:14px; font-size:12px; color:var(--ink-soft);
+    display:flex; justify-content:space-between; letter-spacing:0.04em;
+  }
+
+  section{padding:110px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; flex-wrap:wrap; gap:20px;}
+  .section-head h2{font-size:clamp(26px,3vw,36px);}
+  .section-head p{color:var(--ink-soft); font-size:14px; max-width:340px;}
+
+  /* ===== ABOUT / STATS ===== */
+  .about{background:var(--bg-card); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start;}
+  .about-copy p{color:var(--ink-soft); margin-bottom:18px; font-size:15.5px;}
+  .stats{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .stat{background:var(--bg-card); padding:32px 26px;}
+  .stat b{
+    font-family:'Noto Serif KR',serif; font-size:34px; display:block; margin-bottom:6px; color:var(--deep);
+  }
+  .stat span{font-size:13px; color:var(--ink-soft);}
+
+  /* ===== PORTFOLIO ===== */
+  .portfolio-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px;}
+  .p-card{
+    border:1px solid var(--line); background:var(--bg-card); overflow:hidden;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .p-card:hover{transform:translateY(-4px); box-shadow:0 18px 40px -20px rgba(30,35,31,0.35);}
+  .p-visual{
+    aspect-ratio:16/10; position:relative; overflow:hidden;
+    background:
+      repeating-linear-gradient(90deg, rgba(166,124,66,0.10) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(0deg, rgba(166,124,66,0.10) 0 1px, transparent 1px 64px),
+      linear-gradient(135deg, #2A2F27, #1E231F);
+  }
+  .p-visual .swatch-line{position:absolute; background:rgba(201,214,195,0.55);}
+  .p-tag{
+    position:absolute; top:16px; left:16px; background:var(--brass); color:#fff;
+    font-size:11px; font-weight:600; padding:5px 10px; letter-spacing:0.05em;
+  }
+  .p-body{padding:26px 26px 28px;}
+  .p-body h3{font-size:19px; margin-bottom:8px;}
+  .p-meta{display:flex; gap:14px; font-size:12.5px; color:var(--ink-soft); margin-bottom:14px; flex-wrap:wrap;}
+  .p-meta span{padding-left:14px; position:relative;}
+  .p-meta span:first-child{padding-left:0;}
+  .p-meta span:not(:first-child)::before{content:''; position:absolute; left:0; top:4px; bottom:4px; width:1px; background:var(--line);}
+  .p-link{font-size:13px; font-weight:600; color:var(--olive-dark); display:inline-flex; align-items:center; gap:6px;}
+  .p-link:after{content:'→'; transition:transform .2s ease;}
+  .p-card:hover .p-link:after{transform:translateX(4px);}
+  .portfolio-more{text-align:center; margin-top:44px;}
+
+  /* ===== PROCESS ===== */
+  .process{background:var(--deep); color:#EFEBE0;}
+  .process .section-head h2, .process .section-head p{color:#EFEBE0;}
+  .process .section-head p{color:#B8B4A6;}
+  .process .eyebrow{color:#B9CBB0;}
+  .process .eyebrow::before{background:var(--brass);}
+  .p-steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid rgba(239,235,224,0.18);}
+  .p-step{padding:34px 26px 0; border-right:1px solid rgba(239,235,224,0.18); position:relative;}
+  .p-step:last-child{border-right:none;}
+  .p-step .num{font-family:'Noto Serif KR',serif; font-size:14px; color:var(--brass); margin-bottom:14px; display:block;}
+  .p-step h4{font-size:17px; margin-bottom:10px; font-weight:600;}
+  .p-step p{font-size:13.5px; color:#B8B4A6;}
+
+  /* ===== BLOG/YOUTUBE ===== */
+  .media-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .m-card{
+    border:1px solid var(--line); background:var(--bg-card); padding:34px;
+    display:flex; flex-direction:column; gap:16px; transition:border-color .25s ease;
+  }
+  .m-card:hover{border-color:var(--brass);}
+  .m-icon{width:44px; height:44px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; border-radius:50%;}
+  .m-card h3{font-size:19px;}
+  .m-card p{color:var(--ink-soft); font-size:14px;}
+  .m-card .p-link{margin-top:auto;}
+
+  /* ===== CONTACT / FOOTER ===== */
+  footer{background:var(--deep-2); color:#DDD8C9; padding:90px 0 0;}
+  .footer-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:60px; padding-bottom:70px; border-bottom:1px solid rgba(221,216,201,0.15);}
+  .footer-grid h3{color:#EFEBE0; font-size:22px; margin-bottom:16px;}
+  .footer-grid p{color:#A9A497; font-size:14px; margin-bottom:24px; max-width:320px;}
+  .f-col h4{font-size:13px; letter-spacing:0.1em; color:#B9CBB0; margin-bottom:18px; font-weight:600;}
+  .f-col p, .f-col a{display:block; font-size:14px; color:#C9C4B6; margin-bottom:10px;}
+  .f-col a:hover{color:var(--brass);}
+  .bottom-bar{
+    display:flex; justify-content:space-between; padding:26px 0; font-size:12.5px; color:#8E897C; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .blueprint-wrap{order:-1;}
+    .about-grid{grid-template-columns:1fr; gap:40px;}
+    .portfolio-grid{grid-template-columns:1fr;}
+    .p-steps{grid-template-columns:1fr 1fr; row-gap:34px;}
+    .p-step{border-right:none; border-bottom:1px solid rgba(239,235,224,0.18); padding-bottom:26px;}
+    .media-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr; gap:36px; padding-bottom:40px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">JL<span>company</span></a>
+    <div class="nav-links">
+      <a href="#about">회사소개</a>
+      <a href="#portfolio">시공사례</a>
+      <a href="#process">진행절차</a>
+      <a href="#media">블로그·유튜브</a>
+      <a href="#contact">오시는 길</a>
+    </div>
+    <a href="#contact" class="nav-cta">견적 상담하기</a>
+    <button class="burger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid wrap">
+      <div>
+        <div class="eyebrow">JL COMPANY · 프리미엄 인테리어 스튜디오</div>
+        <h1>도면 위의 선 하나가,<br><em>사는 사람의 하루</em>가 됩니다.</h1>
+        <p>제이엘컴퍼니는 대구·경북 지역을 기반으로 엄선된 프리미엄 자재와 정직한 시공으로 공간을 완성하는 인테리어 리모델링 전문 브랜드입니다.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary">무료 견적 상담</a>
+          <a href="#portfolio" class="btn-ghost">시공사례 보기</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="blueprint-wrap">
+          <svg viewBox="0 0 800 600" aria-hidden="true">
+            <rect class="bp-bg" x="0" y="0" width="800" height="600" rx="2"></rect>
+            <path class="bp-line" d="M60,60 L740,60 L740,540 L60,540 Z" pathLength="1"></path>
+            <path class="bp-line" d="M430,60 L430,540" pathLength="1"></path>
+            <path class="bp-line" d="M430,330 L740,330" pathLength="1"></path>
+            <path class="bp-line" d="M610,60 L610,330" pathLength="1"></path>
+            <path class="bp-line thin" d="M60,470 L170,470 L170,540" pathLength="1"></path>
+            <path class="bp-line thin" d="M430,180 L520,180" pathLength="1"></path>
+            <path class="bp-line thin" d="M280,60 L280,160" pathLength="1"></path>
+            <path class="bp-line thin" d="M170,540 L170,470" pathLength="1"></path>
+            <circle class="bp-dot" cx="170" cy="505" r="3"></circle>
+            <text class="bp-label" x="150" y="220">LIVING</text>
+            <text class="bp-label" x="150" y="240" style="font-size:10px; fill:#8FA089;">거실</text>
+            <text class="bp-label" x="470" y="120">KITCHEN</text>
+            <text class="bp-label" x="470" y="140" style="font-size:10px; fill:#8FA089;">주방</text>
+            <text class="bp-label" x="650" y="120">BATH</text>
+            <text class="bp-label" x="650" y="140" style="font-size:10px; fill:#8FA089;">욕실</text>
+            <text class="bp-label" x="470" y="420">BEDROOM</text>
+            <text class="bp-label" x="470" y="440" style="font-size:10px; fill:#8FA089;">침실</text>
+            <text class="bp-label" x="80" y="90" style="font-size:10px; fill:#8FA089; letter-spacing:0.12em;">FLOOR PLAN — 34PY</text>
+          </svg>
+        </div>
+        <div class="bp-caption">
+          <span>SCALE 1:80</span>
+          <span>JL STUDIO DESIGN LAB</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">ABOUT · 회사소개</div>
+          <h2 style="font-size:clamp(24px,2.8vw,32px); margin-bottom:24px;">기본에 충실한 시공이<br>가장 오래가는 인테리어입니다.</h2>
+          <div class="about-copy">
+            <p>제이엘컴퍼니는 대구·경북 전역의 주거·상업 공간을 시공해온 인테리어 리모델링 전문 기업입니다. 쇼룸 상담부터 설계, 시공, 하자보수까지 전 과정을 한 팀이 책임집니다.</p>
+            <p>과장된 견적이 아닌 정확한 실측과 표준화된 단가 체계를 기반으로, 고객이 이해할 수 있는 견적서를 제공하는 것을 원칙으로 합니다.</p>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>200<span style="font-size:20px;">+</span></b><span>누적 시공 프로젝트</span></div>
+          <div class="stat"><b>대구·경북</b><span>서비스 지역</span></div>
+          <div class="stat"><b>정품<span style="font-size:20px;">only</span></b><span>정품 자재 100% 사용</span></div>
+          <div class="stat"><b>1:1</b><span>전담 디자이너 상담</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">PORTFOLIO · 시공사례</div>
+          <h2>도면이 실제 공간이 된 순간들</h2>
+        </div>
+        <p>최근 완료한 프로젝트 일부입니다. 각 현장의 시공 과정은 블로그와 유튜브에서 상세히 확인하실 수 있습니다.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        <article class="p-card">
+          <div class="p-visual">
+            <span class="p-tag">아파트 리모델링</span>
+          </div>
+          <div class="p-body">
+            <h3>거창 대경 넥스빌</h3>
+            <div class="p-meta">
+              <span>경남 거창</span>
+              <span>전체 리모델링</span>
+              <span>프리미엄 자재</span>
+            </div>
+            <a href="#media" class="p-link">시공 과정 보러가기</a>
+          </div>
+        </article>
+
+        <article class="p-card">
+          <div class="p-visual">
+            <span class="p-tag">34평형</span>
+          </div>
+          <div class="p-body">
+            <h3>경산 펜타힐즈 서한이다음 34평</h3>
+            <div class="p-meta">
+              <span>경북 경산</span>
+              <span>34평</span>
+              <span>거실·주방 확장</span>
+            </div>
+            <a href="#media" class="p-link">시공 과정 보러가기</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="portfolio-more">
+        <a href="#contact" class="btn-ghost">더 많은 시공사례가 궁금하다면 상담 문의</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">PROCESS · 진행절차</div>
+          <h2>상담부터 하자보수까지, 4단계</h2>
+        </div>
+        <p>모든 프로젝트는 동일한 절차로 투명하게 진행됩니다.</p>
+      </div>
+      <div class="p-steps">
+        <div class="p-step">
+          <span class="num">01</span>
+          <h4>쇼룸 상담</h4>
+          <p>공간과 예산, 라이프스타일을 함께 확인하고 방향을 잡습니다.</p>
+        </div>
+        <div class="p-step">
+          <span class="num">02</span>
+          <h4>실측·설계</h4>
+          <p>정확한 현장 실측을 바탕으로 도면과 견적서를 제공합니다.</p>
+        </div>
+        <div class="p-step">
+          <span class="num">03</span>
+          <h4>시공</h4>
+          <p>공정별 담당자가 배치되어 일정과 품질을 관리합니다.</p>
+        </div>
+        <div class="p-step">
+          <span class="num">04</span>
+          <h4>하자보수</h4>
+          <p>준공 이후에도 책임 있게 사후관리를 진행합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA -->
+  <section id="media">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">MEDIA · 블로그 · 유튜브</div>
+          <h2>더 자세한 시공 이야기</h2>
+        </div>
+        <p>현장의 생생한 과정과 노하우를 네이버 블로그와 유튜브에서 꾸준히 공유하고 있습니다.</p>
+      </div>
+      <div class="media-grid">
+        <a class="m-card" href="#" target="_blank" rel="noopener">
+          <div class="m-icon">N</div>
+          <h3>제이엘스튜디오 네이버 블로그</h3>
+          <p>시공 사례, 자재 정보, 인테리어 팁을 상세하게 기록합니다.</p>
+          <span class="p-link">블로그 방문하기</span>
+        </a>
+        <a class="m-card" href="https://www.youtube.com/channel/UCw9DN8r_dx-29ZShQTdeotA" target="_blank" rel="noopener">
+          <div class="m-icon">▶</div>
+          <h3>제이엘스튜디오 유튜브</h3>
+          <p>시공 전 과정과 완공 후 공간을 영상으로 확인하실 수 있습니다.</p>
+          <span class="p-link">유튜브 채널 방문하기</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>지금, 공간 상담을 시작하세요</h3>
+        <p>쇼룸 방문 상담부터 전화 상담까지, 제이엘컴퍼니가 도와드립니다. 부담 없이 문의해주세요.</p>
+        <a href="tel:16614529" class="btn-primary">전화 상담 1661-4529</a>
+      </div>
+      <div class="f-col">
+        <h4>CONTACT</h4>
+        <a href="tel:16614529">전화 1661-4529</a>
+        <a href="#">카카오톡 채널 [링크 입력]</a>
+        <a href="mailto:jlcompany91@naver.com">이메일 jlcompany91@naver.com</a>
+      </div>
+      <div class="f-col">
+        <h4>SHOWROOM</h4>
+        <p>대구 중구 달구벌대로2038 2층</p>
+        <p>영업시간 09:00 – 17:00</p>
+        <p>주말 휴무 / 100% 예약상담제 매장</p>
+      </div>
+    </div>
+    <div class="bottom-bar wrap" style="padding-left:0; padding-right:0;">
+      <span>© 2026 JL Company · 제이엘스튜디오. All rights reserved.</span>
+      <span>정직한 시공, 투명한 견적</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu toggle
+  const burger = document.querySelector('.burger');
+  const links = document.querySelector('.nav-links');
+  burger.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute; top:64px; left:0; right:0; flex-direction:column; background:var(--bg); padding:24px 32px; border-bottom:1px solid var(--line); gap:20px;';
+  });
+</script>
+
+</body>
+</html>
